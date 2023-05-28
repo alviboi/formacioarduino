@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca" >
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />     <meta name="author" content="Alfredo Rafael Vicente Boix" />      <meta name="dcterms.date" content="2023-06-22" />      <meta name="keywords" content="Xarxa, Instal·lació" />      <title>INTRODUCCIÓ A TINKERCAD</title>
+    <style>
+        code{white-space: pre-wrap;}
+        span.smallcaps{font-variant: small-caps;}
+        div.columns{display: flex; gap: min(4vw, 1.5em);}
+        div.column{flex: auto; overflow-x: auto;}
+        div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+        ul.task-list{list-style: none;}
+        ul.task-list li input[type="checkbox"] {
+          width: 0.8em;
+          margin: 0 0.8em 0.2em -1.6em;
+          vertical-align: middle;
+        }
+        .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    </style>
+        <link rel="stylesheet" href="aqua.css" />  
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <![endif]-->
+      
+</head>
+
+<body>
+    <div id="content">
+                 <header id="title-block-header">
+            <h1 class="title">INTRODUCCIÓ A TINKERCAD</h1>
+            <!--        <p class="subtitle">Simulador d’Arduino</p>
+        -->
+            <!--         <p class="author">Alfredo Rafael Vicente
+Boix</p>
+         -->
+                        <p class="date">2023-06-22</p>
+                    </header>
+                 <nav id="TOC" role="doc-toc">
+            <div class="navContainer">
+                 <ul>
+<li><a href="#introducció" id="toc-introducció">Introducció</a></li>
+<li><a href="#tinkercad" id="toc-tinkercad">TinkerCAD</a></li>
+<li><a href="#projecte.-el-rellotge"
+id="toc-projecte.-el-rellotge">Projecte. El rellotge</a></li>
+</ul>
+            </div>
+        </nav>
+                <main>
+            <!-- \awesomebox[violet]{2pt}{\faRocket}{violet}{Lorem ipsum…} -->
+            <!-- ![Esquema d'un switch amb diferents VLANS](switch/vlans2.png){ width=50% } -->
+            <h1 id="introducció">Introducció</h1>
+            <p>Per últim veurem una ferramenta que pot resultar molt
+            útil per a compartir els nostres projectes i el que és més
+            important ens permetrà simular el seu funcionament sense
+            necessitat de fer cap circuit.</p>
+            <p>El TinkerCAD és una ferramenta <strong>que no està
+            pensada</strong> expressament per a Arduino sinó que ens
+            permet crear diferents tipus de projectes, a més, ens permet
+            compartir projectes i crear cursos per a que els alumnes
+            puguen accedir a “classes”. Aquest apartat no el veurem en
+            aquesta unitat ja que no forma part dels propòsits del curs,
+            però és bastant intuitiu i ho podreu resoldre fàcilment.</p>
+            <p>Uns del desavantatges que presenta aquesta ferramenta és
+            que no podrem carregar els nostres projectes externs per a
+            fer simulacions, sempre tindrem que crear el projecte ací, i
+            en tot cas descarrega el codi per a carregar-lo després en
+            Arduino IDE.</p>
+            <p>La companyia que està darrere d’aquesta pàgina és
+            Autodesk, per tant no és codi lliure i hem de ser conscients
+            que aquesta companyia tindrà accés a les dades que nosaltres
+            posem en la plataforma.</p>
+            <div class="warning">
+            <p>Si aneu a crear una classe, recordeu que no està permès
+            que poseu les dades dels vostres alumnes en cap lloc que no
+            siguen els servidors autoritzats per Conselleria, per tant,
+            si voleu crear una classe us recomanem que utilitzeu
+            pseudònims.</p>
+            </div>
+            <h1 id="tinkercad">TinkerCAD</h1>
+            <p>Podem anar a la pàgina de TinkerCAD <a
+            href="https://www.tinkercad.com/">ací</a>
+            (https://www.tinkercad.com/). Una vegada estiguem dins
+            veurem el següent.</p>
+            <figure>
+            <img src="img/1.png" style="width:50.0%"
+            alt="Pàgina inici" />
+            <figcaption aria-hidden="true">Pàgina inici</figcaption>
+            </figure>
+            <p>Anirem a Inici o a registrar-nos. Els procés de registre
+            és com qualsevol altre. En el nostre cas estem donats d’alta
+            com a educadors i la pàgina que ens apareix és la
+            següent:</p>
+            <figure>
+            <img src="img/2.png" style="width:50.0%"
+            alt="Crea circuit" />
+            <figcaption aria-hidden="true">Crea circuit</figcaption>
+            </figure>
+            <p>Una vegada fem clic ens pareixerà la següent pàgina. Ací
+            ja podem començar a simular el nostre circuit.</p>
+            <figure>
+            <img src="img/3.png" style="width:50.0%"
+            alt="Espai de treball" />
+            <figcaption aria-hidden="true">Espai de treball</figcaption>
+            </figure>
+            <p>Ara podem fer clic als diferents dispositius i
+            desplaçar-los a l’espai de treball. En aquest cas
+            seleccionem la placa Arduini que per defecte ens apareixerà
+            el circuit de <em>Blink</em>, que fa parpellejar un LED.</p>
+            <figure>
+            <img src="img/4.png" style="width:50.0%"
+            alt="Arduino UNO" />
+            <figcaption aria-hidden="true">Arduino UNO</figcaption>
+            </figure>
+            <p>Ara agafarem els següents elements. Esborrem la placa
+            Arduino is seleccionem:</p>
+            <ul>
+            <li>Placa de proves: que ja duu l’Arduino amb una placa de
+            proves incorporada.</li>
+            <li>Resistència</li>
+            <li>LED</li>
+            </ul>
+            <p>El circuit ens quedaría de la següent manera:</p>
+            <figure>
+            <img src="img/6.png" style="width:50.0%" alt="Circuit" />
+            <figcaption aria-hidden="true">Circuit</figcaption>
+            </figure>
+            <p>Ara si fem clic sobre <em>código</em> podrem veure el
+            codi i si fem clic a <em>Iniciar simulación</em> podrem
+            veure com el LED s’encén i s’apaga. Com podem veure la
+            secció dels blocs és bastant limitada i no disposa de tants
+            blocs com poden ser S4A o Blockly@rduino, per tant ens
+            limitarà la complexitat del projecte que podem fer.</p>
+            <figure>
+            <img src="img/7.png" style="width:50.0%"
+            alt="LED amb resistència" />
+            <figcaption aria-hidden="true">LED amb
+            resistència</figcaption>
+            </figure>
+            <p>Si comencem la simulació podrem veure com s’encén el LED
+            de la placa i de la placa de proves.</p>
+            <div class="note">
+            <p>Recordem que el LED de la placa proves està connectat a
+            la sortida 13. Aquest s’utilitza en molts casos per a fer
+            proves.</p>
+            </div>
+            <figure>
+            <img src="img/8.png" style="width:50.0%" alt="Simulació" />
+            <figcaption aria-hidden="true">Simulació</figcaption>
+            </figure>
+            <h1 id="projecte.-el-rellotge">Projecte. El rellotge</h1>
+            <p>Anem a proposar com a xicotet exemple fer el rellotge
+            utilitzant el circuit de LCD amb dos cables.</p>
+            <div class="note">
+            <p>També es pot utilitzar el projecte de LCD, que vegem que
+            té connectats els pins SCL i SDA, això simplifica bastant
+            les connexions i ens dona més entrades i sortides lliures.
+            Però en el nostre cas, en realitat ara ens dona igual.</p>
+            </div>
+            <figure>
+            <img src="img/9.png" style="width:50.0%"
+            alt="Circuit LCD" />
+            <figcaption aria-hidden="true">Circuit LCD</figcaption>
+            </figure>
+            <p>Podem veure que ja porta carregat un programa per a veure
+            com apareix en la pantalla. Podem crear el nostre programa a
+            partir d’aquest ja que la inicialització del LCD és la
+            mateixa.</p>
+            <div class="note">
+            <p>Sempre cal inicialitzar el LCD definint quin protocol
+            anem a utilitzar, connexió en paral·lel o I2C. Cal tenir en
+            compte que per a fer funcionar un LCD amb el protocol cal un
+            <em>driver</em> que s’acopla al LCD.</p>
+            </div>
+            <figure>
+            <img src="img/10.png" style="width:50.0%"
+            alt="Codi inicial circuit LCD" />
+            <figcaption aria-hidden="true">Codi inicial circuit
+            LCD</figcaption>
+            </figure>
+            <p>A mesura que anem creant el codi podem veure la traducció
+            que està fent a C, i si volem fer el projecte en un circuit
+            real podrem descarregar-nos l’arxiu per a obrir-lo en
+            l’Arduino IDE i muntar-lo.</p>
+            <figure>
+            <img src="img/13.png" style="width:50.0%"
+            alt="Baixa arxiu" />
+            <figcaption aria-hidden="true">Baixa arxiu</figcaption>
+            </figure>
+            <p>Tin en compte que pots ampliar la secció de codi per a
+            poder programar d’una manera més còmoda.</p>
+            <figure>
+            <img src="img/14.png" style="width:50.0%"
+            alt="Escrivint codi" />
+            <figcaption aria-hidden="true">Escrivint codi</figcaption>
+            </figure>
+            <p>En la següent imatge podem veure el codi que hem creat.
+            Es tracta d’un bucle que es va repetint continuament i va
+            afegint esperant-se 1 segon cada vegada per anar
+            incrementant una variable anomenada segons.</p>
+            <div class="warning">
+            <p>Aquest projecte està fet amb propòsits didàctics, ja que
+            hi hauria un retràs en el temps que tarda en executar el
+            codi després d’esperar 1 segon. Per a fer-ho correctament
+            caldria utilitzar interrupcions, però la programació en
+            blocs això no ho permet.</p>
+            </div>
+            <p>Posteriorment comprovem que el valor de segons no és 60,
+            i si és 60 increment minuts en 1 i tornem segons a 0. Això
+            ho repetim per a minuts i per a hores però en 24.</p>
+            <p>En el següent bloc escrivim en pantalla els segons,
+            minuts i hores separats per : i afegim un 0 si el valor de
+            les variables està entre 0 i 9.</p>
+            <figure>
+            <img src="img/15a.png" style="width:50.0%" alt="Codi" />
+            <figcaption aria-hidden="true">Codi</figcaption>
+            </figure>
+            <p>Ací podem veure la nostra simulació:</p>
+            <figure>
+            <img src="img/17.png" style="width:50.0%" alt="Simulació" />
+            <figcaption aria-hidden="true">Simulació</figcaption>
+            </figure>
+        </main>
+        
+
+        <!--- Modal images -->
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- The Close Button -->
+            <!--span class="close">&times;</span-->
+
+            <!-- Modal Content (The Image) -->
+            <img class="modal-content" id="img01">
+
+            <!-- Modal Caption (Image Text) -->
+            <div id="caption"></div>
+        </div>
+
+        <!-- End Modal Images -->
+
+        <script>
+            function ModalizeImages() {
+                // Script basat en https://www.w3schools.com/howto/howto_css_modal_images.asp
+                // PEr ampliar imatges en fer click
+
+                // Get the modal
+                var modal = document.getElementById("myModal");
+
+                var modalImg = document.getElementById("img01");
+                var captionText = document.getElementById("caption");
+
+                // Get the image and insert it inside the modal - use its "alt" text as a caption
+                //var img = document.getElementById("myImg");
+                document.querySelectorAll("img").forEach((img => {
+                        img.onclick = function() {
+                            modal.style.display = "block";
+                            modalImg.src = this.src;
+                            captionText.innerHTML = this.alt;
+                        }
+                    }))
+                    // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks on <span> (x), close the modal
+                //span.onclick = function() {
+                myModal.onclick = function() {
+                    modal.style.display = "none";
+                }
+
+
+            }
+
+
+            function markItem(id) {
+                // Restaurem format de tots
+                document.querySelectorAll("#TOC a").forEach(function(item) {
+                        //item.style.fontWeight = "300";
+                        item.classList.remove("navItemSelected");
+                    })
+                    //item.style.color = "#ff0000";
+
+                // Afegim format
+                let items = document.querySelectorAll("#TOC a[href='#" + id + "']");
+                items.forEach(function(item) {
+                    //item.style.fontWeight = "bolder";
+                    item.classList.add("navItemSelected");
+                })
+
+            }
+
+            var observer = new IntersectionObserver(function(entries) {
+                // isIntersecting is true when element and viewport are overlapping
+                // isIntersecting is false when element and viewport don't overlap
+                if (entries[0].isIntersecting === true) {
+                    let id = entries[0].target.id;
+                    markItem(id);
+                }
+
+            }, {
+                threshold: [0]
+            });
+
+            window.addEventListener("load", function() {
+                document.querySelectorAll("h1, h2, h3").forEach(function(item) {
+                    observer.observe(item);
+                });
+
+                document.querySelectorAll("#TOC a").forEach(function(item) {
+                    item.addEventListener("click", function(item) {
+                        markItem(item.id);
+                    })
+                })
+
+                // Fem modals totes les imatges
+                ModalizeImages();
+            })
+
+            document.querySelector("#TOC").addEventListener("click", function(event) {
+                let toc = event.target
+                if (toc.offsetWidth > 10) {
+                    toc.classList.add("minimizedToc");
+                }
+            })
+
+            document.querySelector("#TOC").addEventListener("mouseover", function(event) {
+                let toc = event.target
+                if (toc.classList.contains("minimizedToc"))
+                    toc.classList.remove("minimizedToc");
+            })
+
+
+            //item.style.color = "#ff0000";
+        </script>
+    </div>
+</body>
+
+</html>
