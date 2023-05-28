@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca" >
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />     <meta name="author" content="Alfredo Rafael Vicente Boix" />      <meta name="dcterms.date" content="2023-06-22" />      <meta name="keywords" content="Xarxa, Instal·lació" />      <title>INTRODUCCIÓ A BLOCKLY@RDUINO</title>
+    <style>
+        code{white-space: pre-wrap;}
+        span.smallcaps{font-variant: small-caps;}
+        div.columns{display: flex; gap: min(4vw, 1.5em);}
+        div.column{flex: auto; overflow-x: auto;}
+        div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+        ul.task-list{list-style: none;}
+        ul.task-list li input[type="checkbox"] {
+          width: 0.8em;
+          margin: 0 0.8em 0.2em -1.6em;
+          vertical-align: middle;
+        }
+        .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    </style>
+        <link rel="stylesheet" href="aqua.css" />  
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <![endif]-->
+      
+</head>
+
+<body>
+    <div id="content">
+                 <header id="title-block-header">
+            <h1 class="title">INTRODUCCIÓ A BLOCKLY@RDUINO</h1>
+            <!--        <p class="subtitle">Plugin per a Arduino IDE</p>
+        -->
+            <!--         <p class="author">Alfredo Rafael Vicente
+Boix</p>
+         -->
+                        <p class="date">2023-06-22</p>
+                    </header>
+                 <nav id="TOC" role="doc-toc">
+            <div class="navContainer">
+                 <ul>
+<li><a href="#introducció" id="toc-introducció">Introducció</a></li>
+<li><a href="#la-finestra-principal" id="toc-la-finestra-principal">La
+finestra principal</a>
+<ul>
+<li><a href="#lògica" id="toc-lògica">Lògica</a></li>
+</ul></li>
+<li><a href="#un-polsador.-entrada-digital-i-sortida-digital"
+id="toc-un-polsador.-entrada-digital-i-sortida-digital">Un polsador.
+Entrada digital i sortida digital</a>
+<ul>
+<li><a href="#placa-protoboard" id="toc-placa-protoboard">Placa
+protoboard</a></li>
+<li><a href="#programa" id="toc-programa">Programa</a></li>
+</ul></li>
+<li><a href="#sortides-analògiques-i-entrades-analògiques."
+id="toc-sortides-analògiques-i-entrades-analògiques.">Sortides
+analògiques i entrades analògiques.</a>
+<ul>
+<li><a href="#placa-protoboard-1" id="toc-placa-protoboard-1">Placa
+protoboard</a></li>
+<li><a href="#programa-1" id="toc-programa-1">Programa</a></li>
+</ul></li>
+<li><a href="#motor" id="toc-motor">Motor</a>
+<ul>
+<li><a href="#placa-protoboard-2" id="toc-placa-protoboard-2">Placa
+protoboard</a></li>
+<li><a href="#programa-2" id="toc-programa-2">Programa</a></li>
+</ul></li>
+<li><a href="#els-shields.-exemple-de-shield-de-dfrobot"
+id="toc-els-shields.-exemple-de-shield-de-dfrobot">Els <em>shields</em>.
+Exemple de shield de DFRobot</a>
+<ul>
+<li><a href="#placa-protoboard-3" id="toc-placa-protoboard-3">Placa
+protoboard</a></li>
+<li><a href="#programa-3" id="toc-programa-3">Programa</a></li>
+</ul></li>
+</ul>
+            </div>
+        </nav>
+                <main>
+            <!-- \awesomebox[violet]{2pt}{\faRocket}{violet}{Lorem ipsum…} -->
+            <!-- ![Esquema d'un switch amb diferents VLANS](switch/vlans2.png) -->
+            <h1 id="introducció">Introducció</h1>
+            <p>En aquesta unitat parlarem del plugin que existeix per a
+            Arduino IDE que ens permet programar en Blocs. Aquest plugin
+            el que fa es traduir els blocs a codi C++ per tant hem
+            d’utilitzar l’Arduino IDE de manera paralela. Blockly@rduino
+            és sistema que ens permetrà fer més coses, però és un poc
+            més complicat.</p>
+            <p>Uns dels problemes que presenta aquest plugin és que és
+            relativament nou i encara no existeix una versió definitiva,
+            sinó que podem dir que encara està en proves i això fa que
+            siga bastant inestable i apareguen errors de tant que cal
+            solucionar posant-te al codi. És per això que, si bé és
+            interessant coneixer-lo, no es recomana per a treballar en
+            un projecte a no ser que es teste bé el que es va a fer.</p>
+            <h1 id="la-finestra-principal">La finestra principal</h1>
+            <p>Quan iniciem en plugin ens apareixerà la següent
+            finestra. Abans de començar és important configurar tots els
+            apartats del plugin. Es bastant farragós però cada vegada
+            que entres has de configurar el teu espai de treball tal i
+            com el vullgues tenir: l’idioma, blocs, etc…</p>
+            <figure>
+            <img src="img/0general.png" alt="Aspecte general" />
+            <figcaption aria-hidden="true">Aspecte general</figcaption>
+            </figure>
+            <p>Podem veure que hi han diferents seccions, cada secció té
+            una sèrie de blocs. Els mes importants podem que dir que
+            són:</p>
+            <ul>
+            <li>Lògica: Agrupa tots els blocs d’operacions lògiques. Cal
+            destacar el condicional si.</li>
+            <li>Matemàtiques: Cal destacar les operacions matemàtiques
+            bàsiques.</li>
+            <li>Variables: Quan fem clic en crea una variable ens
+            apareixeran tots els blocs necessaris per a operar en la
+            variable.</li>
+            <li>Arduino: Aquí destaquem l’element bucle, tot i que
+            existeix una secció a banda. És per a fer coses un poc més
+            avançades.</li>
+            </ul>
+            <figure>
+            <img src="img/0logica.png" alt="Aspecte general" />
+            <figcaption aria-hidden="true">Aspecte general</figcaption>
+            </figure>
+            <p>El primer que farem serà configurar l’idioma i afegirem
+            els blocs Arduino:</p>
+            <figure>
+            <img src="img/0idioma.png" style="width:50.0%"
+            alt="Idioma" />
+            <figcaption aria-hidden="true">Idioma</figcaption>
+            </figure>
+            <p>I després configurarem els blocs que anem a utilitzar, en
+            el nostre cas agafarem els que anema a utilitzar, afegirem
+            els blocs Aduino</p>
+            <figure>
+            <img src="img/0blocs.png" style="width:50.0%"
+            alt="Configuració de blocs" />
+            <figcaption aria-hidden="true">Configuració de
+            blocs</figcaption>
+            </figure>
+            <h2 id="lògica">Lògica</h2>
+            <p>És important veure que alguns blocs disposen d’un botó
+            blau que al fer clic ens apareixerà un diàleg on podem
+            ajuntar blocs per a afegir funcionalitats al bloc. El cas
+            més clar és quan volem posar un <em>sino</em> al bloc
+            <em>si</em>.</p>
+            <figure>
+            <img src="img/0sino.png" alt="Configuració de sino" />
+            <figcaption aria-hidden="true">Configuració de
+            sino</figcaption>
+            </figure>
+            <h1 id="un-polsador.-entrada-digital-i-sortida-digital">Un
+            polsador. Entrada digital i sortida digital</h1>
+            <p>El primer exemple que anem a veure es tracta d’un
+            polsador que encendrà el LED de la placa Arduino (El pin
+            13).</p>
+            <h2 id="placa-protoboard">Placa protoboard</h2>
+            <p>Es tracta d’un circuit molt senzill. Hem de tenir en
+            compte que quan polsem es posarà el pin a 5V (al nostre bloc
+            <em>activat</em>). Si ens fixem en el circuit hem de veure
+            que hem afegit una resistència entre la entrada del polsador
+            i <em>GND</em>.</p>
+            <p>::note Quan utilitzeu LEDs, us recomane utilitzar
+            resistències de 470 Ω. Es un valor bastant estàndard.
+            :::</p>
+            <figure>
+            <img src="img/1c.png" alt="Circuit" />
+            <figcaption aria-hidden="true">Circuit</figcaption>
+            </figure>
+            <h2 id="programa">Programa</h2>
+            <p>El programa consistirà en un bucle on si l’entrada al PIN
+            2 és certa activarà el LED i sinó és certa el desactivarà.
+            Al pin 2 hem connectat el polsador</p>
+            <figure>
+            <img src="img/1programa2.png" alt="Programa" />
+            <figcaption aria-hidden="true">Programa</figcaption>
+            </figure>
+            <h1
+            id="sortides-analògiques-i-entrades-analògiques.">Sortides
+            analògiques i entrades analògiques.</h1>
+            <p>En aquest circuit veurem com funcionen les entrades
+            analògiques i les sortides analògiques. Les entrades
+            analògiques ens permetran connectar sensors i les sortides
+            analògiques ens permetran mesurar la intensitat del
+            dispositiu que tinguem connectats a la sortida.</p>
+            <div class="warning">
+            <p>A les sortides analògiques no es poden connectar motors,
+            si volem connectar un motor hem de fer ús dels pins
+            <em>PWM</em> (els marcats amb ~) i configurar-ho
+            adientment.</p>
+            </div>
+            <h2 id="placa-protoboard-1">Placa protoboard</h2>
+            <p>Al circuit podem veure com tenim un potenciòmetre
+            connectat a la entrada analògica i un LED que el connectem a
+            una sortida analògica.</p>
+            <figure>
+            <img src="img/2c.png" alt="Circuit" />
+            <figcaption aria-hidden="true">Circuit</figcaption>
+            </figure>
+            <h2 id="programa-1">Programa</h2>
+            <p>El programa simplement llegirà valor a l’entrada
+            analògica i el posarà a la sortida analògica i veurem com la
+            llum va encenent-se poc a poc. El programa com podem veure
+            és molt senzill.</p>
+            <figure>
+            <img src="img/2p.png" alt="Programa" />
+            <figcaption aria-hidden="true">Programa</figcaption>
+            </figure>
+            <h1 id="motor">Motor</h1>
+            <p>Al següent circuit connectarem un motor de baixa potència
+            directament a un pin de la placa Arduino per a controlar la
+            seua velocitat a través d’un potenciòmetre.</p>
+            <div class="warning">
+            <p>Aquesta connexió no és la més recomanable. I es recomana
+            sempre fer-ho a través d’un transistor per a controlar i una
+            font d’alimentació externa per al motor, ja que Arduino no
+            és capaç de proporcionar molta intensitat. En aquest exemple
+            el motor funcionarà.</p>
+            </div>
+            <h2 id="placa-protoboard-2">Placa protoboard</h2>
+            <p>Al circuit connectarem el potenciòmetre a la placa
+            protoboard i el motor a uns dels pins PWD d’Arduino.</p>
+            <figure>
+            <img src="img/3c.png" alt="Circuit" />
+            <figcaption aria-hidden="true">Circuit</figcaption>
+            </figure>
+            <h2 id="programa-2">Programa</h2>
+            <p>Abans de realitzar el programa cal veure a partir de
+            quina senyal de pwm el motor es posarà en funcionament. És
+            per això que utilitzem el següent circuit i anem modificant
+            el valor 190 per a traure el valor a partir del qual el
+            motor funciona. En aquest cas 190 comença a funcionar a
+            partir de 190.</p>
+            <div class="tip">
+            <p>EL valor PWM ha d’estar entre 0 i 255.</p>
+            </div>
+            <figure>
+            <img src="img/3c2.png" alt="Programa" />
+            <figcaption aria-hidden="true">Programa</figcaption>
+            </figure>
+            <p>Per tant els valors que hem d’escriure al PIN de sortida
+            han d’estar entre 190-255 aproximadament. Per a fer això
+            farem que el valor que es llig de la entrada analògica i el
+            dividirem entre 16. Perquè entre 16? Pq entre 190 i 255 van
+            65 pasos, d’aquesta manera convertim el valor de 0 a 1023 en
+            0 a 65 aproximadament. A aquest valor li sumem 190 (o 180 si
+            volem que al valor mínim estiga parat), i el valor resultant
+            sempre estarà entre 190 i 255.</p>
+            <p>Una vegada carregat el projecte veurem que el motor
+            canvia de velocitat.</p>
+            <div class="tip">
+            <p>El valor de la entrada analògica va de 0 a 1023.</p>
+            </div>
+            <figure>
+            <img src="img/3p.png" alt="Programa" />
+            <figcaption aria-hidden="true">Programa</figcaption>
+            </figure>
+            <h1 id="els-shields.-exemple-de-shield-de-dfrobot">Els
+            <em>shields</em>. Exemple de shield de DFRobot</h1>
+            <p>Uns dels gran avantatges que presenta Blocky@rduino és
+            que ja té blocs que permete configurar <em>shields</em>. El
+            <em>shileds o escuts</em> són plaques que ja porten
+            integrats tots els elements necessaris per a fer funcionar
+            un projecte de manera que es munta damunt de la placa
+            Arduino i no cal fer cap circuit.</p>
+            <p>En aquest cas anem a utilitzar el shield de DFRobot que
+            podem trobar en algunes plataformes xineses per uns 4 €,
+            cosa que ens permet fer projectes senzillets sense massa
+            complicacions.</p>
+            <p>El projecte que platejarem d’exemple serà amb el shield,
+            on veurem escrit quina llum de diferent color tenim encesa
+            depenent del botó que polsem. Si activem el potenciòmetre
+            ens donarà el valor que està llegint i modificarà el valor
+            d’un LED.</p>
+            <h2 id="placa-protoboard-3">Placa protoboard</h2>
+            <p>Anem a veure en primer lloc com és el nostre shield.
+            Vegem que podem utilitzar algunes connexions d’Arduino. Les
+            altres són les utilitzades per el shield per a
+            funcionar.</p>
+            <figure>
+            <img src="img/4cdf.png" style="width:50.0%"
+            alt="Shield de DFRobot" />
+            <figcaption aria-hidden="true">Shield de
+            DFRobot</figcaption>
+            </figure>
+            <p>El circuit que anem a utilitzar seria el següent, pero
+            has de tenir en compre que es farien a través del
+            shield:</p>
+            <figure>
+            <img src="img/4c.png" alt="Circuit" />
+            <figcaption aria-hidden="true">Circuit</figcaption>
+            </figure>
+            <div class="note">
+            <p>Al CEFIRE disposem de 3 shields per si algú vol fer ús
+            d’ells per a provar circuits. Els shields es queden al
+            CEFIRE i no es poden prestar.</p>
+            </div>
+            <h2 id="programa-3">Programa</h2>
+            <p>En el programa anem a fer ús dels procediments. Els
+            procediments són parts de codi que es repetixen moltes
+            vegades. D’aquesta manera evitem tindre que escriure codi
+            varies vegades seguides. Tambés existeixen les
+            <strong>funcions</strong>, la diferència és que les funcions
+            tornen un valor i els procediments no.</p>
+            <p>Quan definim un procediment podem obrir les
+            característiques del procediment i afegir els valors que
+            demana. En aquest cas posarem que volem un valor enter (int)
+            i un valor Text (String).</p>
+            <figure>
+            <img src="img/4p1.png" alt="Procediment" />
+            <figcaption aria-hidden="true">Procediment</figcaption>
+            </figure>
+            <p>El aquest cas en el procediment anem a fet el
+            següent:</p>
+            <ol type="1">
+            <li>En primer lloc esborrem la pantalla.</li>
+            <li>Després escrivim en la línia 1, en la primera casella el
+            text que hem enviat.</li>
+            <li>Finalment activem un PIN de sortida donat per x.</li>
+            </ol>
+            <p>Una vegada tenim el procediment definit podem
+            utilitzar-lo nombroses vegades dins del nostre programa.
+            Així podem definir que cada vegada que es polse un botó
+            realitze el procediment però canviant els valors que anem a
+            processar.</p>
+            <div class="important">
+            <p>Cal tenir en compte que les variables que tenim dins de
+            la funció poden donar problemes i, en alguns casos caldrà
+            inicialitzar-les tal i com hem fet en aquest programa</p>
+            </div>
+            <figure>
+            <img src="img/4p2.png" alt="Programa" />
+            <figcaption aria-hidden="true">Programa</figcaption>
+            </figure>
+            <p>Finalment si volguerem afegir una característica més al
+            programa podríem afegir un altre procediment on es llegira
+            una entrada analògica i escrivira sobre un PIN de sortida
+            analògica per a augmentar o disminuir la intensitat del
+            LED.</p>
+            <figure>
+            <img src="img/4p4.png"
+            alt="Programa per llegir la intensitat" />
+            <figcaption aria-hidden="true">Programa per llegir la
+            intensitat</figcaption>
+            </figure>
+            <p>Com podem veure en el programa caldria canviar del
+            programa principal les següents part del codi:</p>
+            <ul>
+            <li>No podriem utilitzar la sortida 13 que ens queda lliure
+            perquè aquesta sortida no és analògica, podriem canviar-la
+            per la 11.</li>
+            <li>Recordem que a la sortida analògica podem posar valors
+            de 0-255, en canvi l’entrada llig valors de 0-1023, per a
+            fer la conversió dividim per 4.1.</li>
+            <li>Hem creat una variable que es diu <em>valorvell</em> per
+            a que esborre el programa sempre que hi haja un canvi a
+            l’entrada analògica. O siga al potenciòmetre. Aquest calor
+            el convertim a int per a que no agafe decimals. Açò ho fem
+            ja que el valor de la entrada varia i no dona mai un valor
+            exacte.</li>
+            </ul>
+            <p>La part marcada aniria al final del l’anterior
+            programa.</p>
+            <div class="note">
+            <p>Tal i com havíem comentat hi ha blocs que encara no estan
+            del tot traduïts ja que no es tracta d’una versió
+            definitiva.</p>
+            </div>
+        </main>
+        
+
+        <!--- Modal images -->
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- The Close Button -->
+            <!--span class="close">&times;</span-->
+
+            <!-- Modal Content (The Image) -->
+            <img class="modal-content" id="img01">
+
+            <!-- Modal Caption (Image Text) -->
+            <div id="caption"></div>
+        </div>
+
+        <!-- End Modal Images -->
+
+        <script>
+            function ModalizeImages() {
+                // Script basat en https://www.w3schools.com/howto/howto_css_modal_images.asp
+                // PEr ampliar imatges en fer click
+
+                // Get the modal
+                var modal = document.getElementById("myModal");
+
+                var modalImg = document.getElementById("img01");
+                var captionText = document.getElementById("caption");
+
+                // Get the image and insert it inside the modal - use its "alt" text as a caption
+                //var img = document.getElementById("myImg");
+                document.querySelectorAll("img").forEach((img => {
+                        img.onclick = function() {
+                            modal.style.display = "block";
+                            modalImg.src = this.src;
+                            captionText.innerHTML = this.alt;
+                        }
+                    }))
+                    // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks on <span> (x), close the modal
+                //span.onclick = function() {
+                myModal.onclick = function() {
+                    modal.style.display = "none";
+                }
+
+
+            }
+
+
+            function markItem(id) {
+                // Restaurem format de tots
+                document.querySelectorAll("#TOC a").forEach(function(item) {
+                        //item.style.fontWeight = "300";
+                        item.classList.remove("navItemSelected");
+                    })
+                    //item.style.color = "#ff0000";
+
+                // Afegim format
+                let items = document.querySelectorAll("#TOC a[href='#" + id + "']");
+                items.forEach(function(item) {
+                    //item.style.fontWeight = "bolder";
+                    item.classList.add("navItemSelected");
+                })
+
+            }
+
+            var observer = new IntersectionObserver(function(entries) {
+                // isIntersecting is true when element and viewport are overlapping
+                // isIntersecting is false when element and viewport don't overlap
+                if (entries[0].isIntersecting === true) {
+                    let id = entries[0].target.id;
+                    markItem(id);
+                }
+
+            }, {
+                threshold: [0]
+            });
+
+            window.addEventListener("load", function() {
+                document.querySelectorAll("h1, h2, h3").forEach(function(item) {
+                    observer.observe(item);
+                });
+
+                document.querySelectorAll("#TOC a").forEach(function(item) {
+                    item.addEventListener("click", function(item) {
+                        markItem(item.id);
+                    })
+                })
+
+                // Fem modals totes les imatges
+                ModalizeImages();
+            })
+
+            document.querySelector("#TOC").addEventListener("click", function(event) {
+                let toc = event.target
+                if (toc.offsetWidth > 10) {
+                    toc.classList.add("minimizedToc");
+                }
+            })
+
+            document.querySelector("#TOC").addEventListener("mouseover", function(event) {
+                let toc = event.target
+                if (toc.classList.contains("minimizedToc"))
+                    toc.classList.remove("minimizedToc");
+            })
+
+
+            //item.style.color = "#ff0000";
+        </script>
+    </div>
+</body>
+
+</html>

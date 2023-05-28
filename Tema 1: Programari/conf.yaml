@@ -1,0 +1,33 @@
+---
+title: "gfd"
+author: [gfd]
+date: "2023-01-11"
+subject: "Cefire"
+keywords: [cefire, curs]
+subtitle: "gfd"
+lang: "es"
+page-background: "scripts/background10.pdf"
+titlepage: true,
+titlepage-rule-color: "360049"
+titlepage-background: "scripts/background10.pdf"
+colorlinks: true
+toc-own-page: true
+header-includes:
+- |
+  ```{=latex}
+  \usepackage{awesomebox}
+  \usepackage{caption}
+  \usepackage{array}
+  \usepackage{tabularx}
+  \usepackage{ragged2e}
+  \usepackage{multirow}
+
+
+  ```
+pandoc-latex-environment:
+  noteblock: [info]
+  tipblock: [tip]
+  warningblock: [warning]
+  cautionblock: [caution]
+  importantblock: [important]
+...

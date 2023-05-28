@@ -1,0 +1,167 @@
+/*
+ * I add this to html files generated with pandoc.
+ */
+
+.tip {
+  padding: 10px;
+  padding-left: 15px;
+  font-size: 1em;
+  background-color: #27E717; /* Red */
+  color: white;
+  margin-bottom: 10px;
+  border-radius: 15px;
+
+
+}
+
+.tip:before {
+    display: block;
+/*    font-style: normal;
+    font-variant: normal;*/
+    width: 20px;
+    height: 20px;
+    float: left;
+    text-rendering: auto;
+    font-size: 2em;
+    -webkit-font-smoothing: antialiased;
+    /*font-family: "Font Awesome 5 Free";*/ font-weight: 900; content: "\279C";
+
+    
+}
+
+.tip p {
+    margin-left: 50px;
+    padding-left: 15px;
+    display: block;
+    border-left: solid;
+}
+
+.info {
+  padding: 10px;
+  padding-left: 15px;
+  font-size: 1em;
+  background-color: #76DE6D; /* Red */
+  color: white;
+  margin-bottom: 10px;
+  border-radius: 15px;
+
+
+}
+
+.info:before {
+    display: block;
+/*    font-style: normal;
+    font-variant: normal;*/
+    width: 20px;
+    height: 20px;
+    float: left;
+    text-rendering: auto;
+    font-size: 2em;
+    -webkit-font-smoothing: antialiased;
+    /*font-family: "Font Awesome 5 Free";*/
+    font-weight: 900; content: " \2139";
+
+    
+}
+
+.info p {
+    margin-left: 50px;
+    padding-left: 15px;
+    display: block;
+    border-left: solid;
+}
+
+
+
+.warning {
+  padding: 10px;
+  padding-left: 15px;
+  font-size: 1em;
+  background-color: #F0827F; /* Red */
+  color: white;
+  margin-bottom: 10px;
+  border-radius: 15px;
+
+
+}
+
+.warning:before {
+    display: block;
+/*    font-style: normal;
+    font-variant: normal;*/
+    width: 20px;
+    height: 20px;
+    float: left;
+    text-rendering: auto;
+    font-size: 2em;
+    -webkit-font-smoothing: antialiased;
+    /* font-family: "Font Awesome 5 Free"; */
+    content: ' \26A0';
+    font-weight: 900; 
+}
+
+
+
+.warning p {
+    margin-left: 50px;
+    padding-left: 15px;
+    display: block;
+    border-left: solid;
+}
+
+
+
+.caution {
+  padding: 10px;
+  padding-left: 15px;
+  font-size: 1em;
+  background-color: #D274AA; /* Red */
+  color: white;
+  margin-bottom: 10px;
+  border-radius: 15px;
+
+
+}
+
+.caution:before {
+    display: block;
+/*    font-style: normal;
+    font-variant: normal;*/
+    width: 20px;
+    height: 20px;
+    float: left;
+    text-rendering: auto;
+    font-size: 2em;
+    -webkit-font-smoothing: antialiased;
+    /*font-family: "Font Awesome 5 Free";*/
+    font-weight: 900; content: "\2757";
+
+    
+}
+
+.caution p {
+    margin-left: 50px;
+    padding-left: 15px;
+    display: block;
+    border-left: solid;
+}
+
+body {
+ background-image: url("cefire.png"), linear-gradient(to right,  #f9f3f2 0%,#fccac2 100%);;
+ background-attachment: fixed;
+ background-repeat: no-repeat;
+ background-position: right bottom;
+ background-color: #f9f3f2;
+ background-size: 35%;
+}
+
+h1:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0.5em;
+  border-top: 1px solid black;
+  z-index: -1;
+}

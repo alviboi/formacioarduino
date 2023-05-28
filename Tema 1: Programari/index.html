@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca" >
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />     <meta name="author" content="Alfredo Rafael Vicente Boix" />      <meta name="dcterms.date" content="2023-06-22" />      <meta name="keywords" content="Xarxa, Instal·lació" />      <title>PROGRAMARI EN LLIUREX. S4A</title>
+    <style>
+        code{white-space: pre-wrap;}
+        span.smallcaps{font-variant: small-caps;}
+        div.columns{display: flex; gap: min(4vw, 1.5em);}
+        div.column{flex: auto; overflow-x: auto;}
+        div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+        ul.task-list{list-style: none;}
+        ul.task-list li input[type="checkbox"] {
+          width: 0.8em;
+          margin: 0 0.8em 0.2em -1.6em;
+          vertical-align: middle;
+        }
+        .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    </style>
+        <link rel="stylesheet" href="aqua.css" />  
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <![endif]-->
+      
+</head>
+
+<body>
+    <div id="content">
+                 <header id="title-block-header">
+            <h1 class="title">PROGRAMARI EN LLIUREX. S4A</h1>
+            <!--        <p class="subtitle">Programqri recomanat per a
+utilizar en Arduino en LliureX</p>
+        -->
+            <!--         <p class="author">Alfredo Rafael Vicente
+Boix</p>
+         -->
+                        <p class="date">2023-06-22</p>
+                    </header>
+                 <nav id="TOC" role="doc-toc">
+            <div class="navContainer">
+                 <ul>
+<li><a href="#introducció" id="toc-introducció">Introducció</a></li>
+<li><a href="#arduino-ide" id="toc-arduino-ide">Arduino IDE</a></li>
+<li><a href="#s4a---scratch-for-arduino"
+id="toc-s4a---scratch-for-arduino">S4A - Scratch for Arduino</a>
+<ul>
+<li><a href="#introducció-a-blockly-amb-s4a"
+id="toc-introducció-a-blockly-amb-s4a">Introducció a Blockly amb
+S4A</a></li>
+</ul></li>
+<li><a href="#bibliografia-i-referències"
+id="toc-bibliografia-i-referències">Bibliografia i referències</a></li>
+</ul>
+            </div>
+        </nav>
+                <main>
+            <!-- \awesomebox[violet]{2pt}{\faRocket}{violet}{Lorem ipsum…} -->
+            <!-- ![Esquema d'un switch amb diferents VLANS](switch/vlans2.png) -->
+            <h1 id="introducció">Introducció</h1>
+            <p>Arduino disposa de multitid de programari per a poder
+            desenvolupar els diferents projectes. Òbviament el més
+            habitual és el Arduino IDE que és l’entorn propi d’Arduino
+            per a programar els diferents dispositius. Per a poder
+            desenvolupar projectes en Arduino IDE és recomanabe conèixer
+            un poc del llenguatge de programació C o C++. En les
+            diferents alternatives que anem a plantejar en aquesta
+            unitat veurem que al menys hem d’entendre un poc el
+            funcionament d’aquest entorn. Per tant en aquesta unitat
+            tractarem els següents entorns:</p>
+            <ul>
+            <li>Breu Introducció a l’Arduino IDE.</li>
+            <li>Scratch for Arduino</li>
+            <li>Blocky@rduino</li>
+            <li>Pàgina de simulación de circuitos TinkerCAD</li>
+            </ul>
+            <p>Cadascú d’aquest entorns té els seus avantatges i
+            inconvenients. Èn el nostre cas també veurem una xicoteta
+            introducció a blocky.</p>
+            <div class="note">
+            <p>Cal dir que totes aaquestes opcions són multiplatafroma,
+            per tant estan disponibles tan en LliureX con en Windows</p>
+            </div>
+            <h1 id="arduino-ide">Arduino IDE</h1>
+            <p>Arduino IDE és el sistema d’Arduino per a programar els
+            dispositius. Per a programar-lo és necessari conèixer el
+            llenguatge de programació C</p>
+            <p>La primera vegada que obrim el programa veurem la següent
+            imatge:</p>
+            <figure>
+            <img src="img/ArduinoIDE/1.png" style="width:50.0%"
+            alt="Pantalla inicial d’Arduino IDE" />
+            <figcaption aria-hidden="true">Pantalla inicial d’Arduino
+            IDE</figcaption>
+            </figure>
+            <p>Podem veure que ha ens apareix algo de codi, però
+            nosaltres no anem a fer cas. El que sí que és encessari és
+            conèixer com es pot programar el dispositiu, ja que quan el
+            programem sempre ho farem a través d’aquest programa. Els
+            passos que caldria seguir serien els següents:</p>
+            <ol type="1">
+            <li>Cal comprovar que el dispositiu està connectat al port
+            USB. Arduino IDE porta alguns programes d’exemples, des de
+            molt senzills a més complicats. Aquest es troben a
+            Fitxer&gt;Exemples. En aquest cas i per a provar el
+            funcionament de la placa provarem el més senzill de tots
+            “Blink”.</li>
+            </ol>
+            <figure>
+            <img src="img/ArduinoIDE/2.png" style="width:50.0%"
+            alt="Programa Blink" />
+            <figcaption aria-hidden="true">Programa Blink</figcaption>
+            </figure>
+            <ol start="2" type="1">
+            <li><p>Vorem se’ns obre una finestra nova amb el programa.
+            No ens pararem a analitzar el programa però pots veure que
+            és molt senzill d’entendre si saps un poc de programació. A
+            més aquest està ple de comentaris per a facilitar-nos la
+            seua comprensió.</p></li>
+            <li><p>És important assegurar-se que el programa té el
+            dispositiu USB correctament configurat, podem comprovar-ho
+            anant a Eines&gt;Port. D’aquesta manera ja podrem enviar el
+            nostre programa a la nostra placa Arduino.</p></li>
+            </ol>
+            <figure>
+            <img src="img/ArduinoIDE/3.png" style="width:50.0%"
+            alt="Comprovació USB" />
+            <figcaption aria-hidden="true">Comprovació USB</figcaption>
+            </figure>
+            <ol start="4" type="1">
+            <li>Per a enviar el programa podem fer-ho des de la següent
+            icona:</li>
+            </ol>
+            <figure>
+            <img src="img/ArduinoIDE/4.png" style="width:50.0%"
+            alt="Envia programa" />
+            <figcaption aria-hidden="true">Envia programa</figcaption>
+            </figure>
+            <ol start="5" type="1">
+            <li><p>Veurem que una llum LED del nostre Arduino comença a
+            parpellejar. Aquest LED està connectat al port 13 del nostre
+            Arduino, per tant si connectarem un LED a en aquesr pin
+            també s’encendria i s’apagaria.</p></li>
+            <li><p>Cal prestar especial atenció a la secció de debug que
+            ens apareix baix de la finestra d’Arduino ja que ens dona
+            una idea del problema que pot haver en el nostra programa.
+            En aquest cas hem canviar una paraula del programa i ens diu
+            on està l’errada per a que ho solucionem:</p></li>
+            </ol>
+            <figure>
+            <img src="img/ArduinoIDE/5.png" style="width:50.0%"
+            alt="Debug del programa" />
+            <figcaption aria-hidden="true">Debug del
+            programa</figcaption>
+            </figure>
+            <div class="tip">
+            <p>Òbviament amb Arduino IDE es pot fer gairebé de tot, és
+            un programari molt potent i que dona moltíssimes opcions per
+            a programar i controlar el nostre Arduino.</p>
+            </div>
+            <p>Finalment cal assenyalar que si volem carregar un
+            programa a la nostra placa que ens ha deixa’t algun company
+            ho podem fer de la següent manera. Aquestos normalment
+            porten l’extensió .ino i polsarem el següent botó:</p>
+            <figure>
+            <img src="img/ArduinoIDE/6.png" style="width:50.0%"
+            alt="Obre un programa" />
+            <figcaption aria-hidden="true">Obre un programa</figcaption>
+            </figure>
+            <h1 id="s4a---scratch-for-arduino">S4A - Scratch for
+            Arduino</h1>
+            <p>S4A és un programari desenvolupat a Catalunya que ens
+            permet connectar la placa en temps real al nostre Arduino.
+            Per a utilizar-la abans que res hem d’instal·lar un
+            firmware<a href="#fn1" class="footnote-ref" id="fnref1"
+            role="doc-noteref"><sup>1</sup></a> especial per a la placa,
+            aquest firmware el podeu trobar al curs d’Aules o el podeu
+            descarregar directament des <a
+            href="http://s4a.cat/downloads/S4AFirmware16.ino">d’ací</a>.</p>
+            <p>I ara posarem en pràctica el que hem après en la secció
+            anterior i carregarem aquest programa en la nostra placa.
+            Recordem que hem de:</p>
+            <ol type="1">
+            <li>Obrir el programa</li>
+            <li>Pujar-lo a la nostra placa</li>
+            </ol>
+            <figure>
+            <img src="img/ArduinoIDE/7.png" style="width:50.0%"
+            alt="Pujem el programa S4AFirmware16" />
+            <figcaption aria-hidden="true">Pujem el programa
+            S4AFirmware16</figcaption>
+            </figure>
+            <div class="warning">
+            <p>Cada vegada que pujeu un programa assegureu-vos que el
+            vostre USB no està ocupat. Una errada molt comuna és tenir
+            l’S4A i el Arduino IDE oberts al mateix temps i això produix
+            problemes amb l’enviament de programari a la placa.</p>
+            </div>
+            <p>Al punt posterior farem una xicoteta introducció a
+            Blockly aprofintant el programari S4A. Un desl principals
+            avantatges que presenta S4A és que no només anem a programa
+            una placa sinó que podem programar botons a l’ordinador per
+            a que facen tasques determinades.</p>
+            <p>Això, en canvi, ens proporciona certs desavantatges com
+            per exemple que els components s’han de connectar d’una
+            manera determinada. S4A habilita 6 entrades analògiques
+            (pins analògics), 2 entrades digitals (pins digitals 2 i 3),
+            3 sortides analògiques (pins digitals 5, 6 i 9), 3 sortides
+            digitals (pins 10, 11 i 13) i 4 sortides especials per a
+            connectar servomotors de rotació contínua Parallax (pins
+            digitals 4, 7, 8 i 12). I així queda determinat, no podem
+            utilitzar un pin especial per a fer una altra sortida
+            digital a no ser que retoquem el firmware de S4A.</p>
+            <h2 id="introducció-a-blockly-amb-s4a">Introducció a Blockly
+            amb S4A</h2>
+            <p>És possible que alguns de vosaltres hageu escoltat el
+            terme <em>Scratch</em> com a llenguatge de programació. Cal
+            dir que la terminologia correcta és:</p>
+            <ul>
+            <li>El llenguatge de programació d’anomena
+            <strong>Blockly</strong> i va ser dissenyat per Google.
+            Aquest llenguatge de programació es troba per tot arreu dins
+            del món de l’aprenentatge.</li>
+            <li>Scratch és una comunitat d’aprenentatge per aprendre a
+            programar</li>
+            </ul>
+            <div class="tip">
+            <p>Si voleu saber més sobre el tema teniu més informació en
+            aquesta <a
+            href="https://scratch.mit.edu/developers">pàgina</a></p>
+            </div>
+            <p>Blockly és un llenguatge que és utilitzat en nombroses
+            aplicacions, des de crear videojocs, Arduino, aplicacions
+            mòbils, etc… Totes elles orientades a l’ensenyament del
+            pensament computacional a l’escola. Per tant, és important
+            entendre que el llenguatge estarà adaptat per al seu
+            propòsit final, en el nostre cas programació d’Arduino.</p>
+            <p>Abans que res el que anem a fer és engegar el programa
+            una vegada ja hem pujat el firmware a la nostra placa:</p>
+            <figure>
+            <img src="img/ArduinoIDE/8.png" alt="S4A" />
+            <figcaption aria-hidden="true">S4A</figcaption>
+            </figure>
+            <h3 id="nocions-bàsiques">Nocions bàsiques</h3>
+            <p>Per a programar amb Blockly hem d’entendre que cada
+            comandament és un bloc. I això què significa? Que bàsicament
+            el que hem de fer és un trencaclosques on cada bloc hem
+            d’anar afegint-lo als llocs on els podem posar. A S4A, si
+            ens fixem en el seu entorn, només arranquem el programa
+            podem veure la següent pantalla:</p>
+            <figure>
+            <img src="img/ArduinoIDE/9.png" alt="S4A" />
+            <figcaption aria-hidden="true">S4A</figcaption>
+            </figure>
+            <p>Com pots veure la pantalla està dividida per seccions, el
+            primer que hem de fer es canviar l’idioma del programa al
+            que nosaltres desitgem.</p>
+            <p><img src="img/ArduinoIDE/9.png"
+            alt="Distribució de pantalla" />
+            <!-- IMATGE d'idimoma --></p>
+            <p>En el nostre cas ens centrarem en la secció de blocs i
+            explicarem els més significatius, en els diferents programes
+            que anem a tractar veurem que bàsicament tots els programen
+            de la mateixa manera però, cadascú, tenen blocs propis.</p>
+            <div class="info">
+            <p>Has de tenir en compte que S4A és un sistema on
+            instal·lem un firmware especial, la placa està constantment
+            comunicant-se amb l’ordinador, per tant es tracta d’un
+            sistema on es treballa en l’ordinador i la placa al mateix
+            temps. La placa no pot desconnectar-se de l’ordinador.</p>
+            </div>
+            <p>Tractarem d’anar explicant els blocs més bàsics a través
+            de diferents projectets amb Arduino.</p>
+            <div class="warning">
+            <p>Tingueu en compte que en els projectes que tractarem ací,
+            ens centrarem únicament en l’apartat de programació i
+            circuiteria.</p>
+            </div>
+            <h3 id="el-nostre-primer-programa.-hola-món">El nostre
+            primer programa. Hola Món!</h3>
+            <p>En aquest programa no utilitzarem la placa d’Arduino tot
+            i que la tenim connectada. Crearem una rata-penada que dirà
+            “Hola Món” i anirà d’un lloc a altre de la zona de . En el
+            programa ja vegem que tenim una animació integrada que és la
+            d’Arduino. En aquest cas la podríem eliminar però anem a
+            deixar-la per a utilitzar-la més endavant.</p>
+            <p>Creem una nova animació.</p>
+            <div class="tip">
+            <p>CAda animació porta associat un programa (que podríem
+            anomenar funció). Aquesta s’executarà sempre que es prenga
+            la bandera verda si així ho considerem.</p>
+            </div>
+            <figure>
+            <img src="img/ArduinoIDE/p1/1.png" style="width:50.0%"
+            alt="Creem nova animació" />
+            <figcaption aria-hidden="true">Creem nova
+            animació</figcaption>
+            </figure>
+            <p>Una vegada creem l’animació escollim alguna imatge, en
+            aquest cas utilitzarem una que ha ve amb els exemples.</p>
+            <figure>
+            <img src="img/ArduinoIDE/p1/2.png" style="width:50.0%"
+            alt="Escollim imatge" />
+            <figcaption aria-hidden="true">Escollim imatge</figcaption>
+            </figure>
+            <p>I importarem una nova imatge, aquesta vegada amb les ales
+            baixades per a poder crear una animació.</p>
+            <figure>
+            <img src="img/ArduinoIDE/p1/3.png"
+            alt="Importem nova imatge" />
+            <figcaption aria-hidden="true">Importem nova
+            imatge</figcaption>
+            </figure>
+            <p>De moment ho tindrem de la següent manera. Fixeu-vos que
+            hi han dos botons, una bandera verda i un botó roig que ens
+            serviran per a començar i aturar el programa.</p>
+            <figure>
+            <img src="img/ArduinoIDE/p1/4.png"
+            alt="Espai del programa" />
+            <figcaption aria-hidden="true">Espai del
+            programa</figcaption>
+            </figure>
+            <p>Fixem-nos ara en dos dels blocs que més anem a utilitzar.
+            Aquests es troben en la secció de
+            <strong>control</strong>.</p>
+            <ul>
+            <li>Al prémer la bandera verda: quan fem clic a la bandera
+            verda començarà el programa.</li>
+            <li>Per sempre: Creem un bucle que farà que es repetisca
+            constantment el que hi ha dins.</li>
+            <li>Espera: fa una pausa dels segons que li indiquem.</li>
+            </ul>
+            <figure>
+            <img src="img/ArduinoIDE/p1/5.png" alt="Blocs inicials" />
+            <figcaption aria-hidden="true">Blocs inicials</figcaption>
+            </figure>
+            <p>ELs blocs cal que els agafem i els soltem sobre l’espai
+            de treball:</p>
+            <figure>
+            <img src="img/ArduinoIDE/p1/6.png"
+            alt="Arrastrem i soltem" />
+            <figcaption aria-hidden="true">Arrastrem i
+            soltem</figcaption>
+            </figure>
+            <p>Ara anem a la secció de Aspecte per a poder canviar
+            l’aspecte de la nostra animació cada x segons i donar
+            l’efecte que es mou.</p>
+            <figure>
+            <img src="img/ArduinoIDE/p1/7.png" alt="Aspecte" />
+            <figcaption aria-hidden="true">Aspecte</figcaption>
+            </figure>
+            <p>I finalment tenim el nostre programa on el que hem fet
+            és:</p>
+            <ol type="1">
+            <li>Comencem amb la imatge de les ales pujades</li>
+            <li>Diu “Hola món!”</li>
+            <li>Esperem 0,5 segons</li>
+            <li>Canviem a la imatge de ales baixades</li>
+            <li>Esperem 0,5 segons</li>
+            </ol>
+            <figure>
+            <img src="img/ArduinoIDE/p1/8.png" alt="Programa" />
+            <figcaption aria-hidden="true">Programa</figcaption>
+            </figure>
+            <p>La pantalla del nostre programa quedaria de moment
+            així:</p>
+            <figure>
+            <img src="img/ArduinoIDE/p1/9.png" alt="Programa" />
+            <figcaption aria-hidden="true">Programa</figcaption>
+            </figure>
+            <p>Finalment podríem afegir dos blocs que es troben en la
+            secció de moviment:</p>
+            <ul>
+            <li>Mou-te X passos: que mourà l’element avant els passos
+            que li indiquem.</li>
+            <li>Rebota al tocar una vora: aquest element és bastant
+            important per a que no surta la rata-penada de la
+            pantalla.</li>
+            <li>Hem de recordar de tindre activat l’element per a que
+            gire només a dreta i esquerra.</li>
+            </ul>
+            <figure>
+            <img src="img/ArduinoIDE/p1/10.png"
+            alt="Programa finalitzat" />
+            <figcaption aria-hidden="true">Programa
+            finalitzat</figcaption>
+            </figure>
+            <p>Ara ja tenim un programeta senzill que mou una rata
+            penada.</p>
+            <div class="caution">
+            <p>Si desconnecteu la placa Arduino de l’ordinador és
+            necessari tornar a iniciar l’S4A per a que la detecte.</p>
+            </div>
+            <h3 id="afegim-interactivitat">Afegim interactivitat</h3>
+            <p>En aquest moment si que anem a connectar la nostra placa
+            Arduino per a afegir un poc d’interactivitat al nostre
+            projecte, anem a utilitzar sensors de presència per a
+            controlar la nostra rata penada.</p>
+            <div class="tip">
+            <p><strong>Però què és un sensor?</strong> Un sensor és un
+            element que anem a connectar a la nostra placa Arduino per a
+            parametritzar la realitat. Nosaltres utilitzarem sensors amb
+            moduls que ja disposen de tota la circuiteria necessària. En
+            estos casos només tindrem que connectar els cables a la
+            placa Arduino, sense preocupar-nos per res més. El sensor de
+            presència té un potenciòmetre que ens permetrà ajustar la
+            sensibilitat.</p>
+            </div>
+            <p>Així en el nostre projecte anem a controlar la nostra
+            rata penada posant la mà damunt del sensor i així detectarà
+            la nostra mà i la mourem en funció de com posem la mà. El
+            nostre circuit quedaria de la següent manera:</p>
+            <figure>
+            <img src="img/ArduinoIDE/p2/3.png" style="width:50.0%"
+            alt="Circuit" />
+            <figcaption aria-hidden="true">Circuit</figcaption>
+            </figure>
+            <div class="tip">
+            <p>Es recomana utilitzar cables dupont mascle-mascle, sinó
+            es vol fer ús de la protoboard es poden utilitzar cables
+            mascle-femella per a connectar directament el sensor a la
+            placa Arduino</p>
+            </div>
+            <p>Ara ja és el moment de continuar el nostre projecte, el
+            que farem és seleccionar el dibuix Arduino i veurem que el
+            nostre programa desapareix de l’espai de treball, en
+            realitat no ha desaparegut sinó que està associat a
+            l’Animació1, si tornem a fer clic en la rata penada veurem
+            altra vegada el programa que hem creat.</p>
+            <figure>
+            <img src="img/ArduinoIDE/p2/6.png"
+            alt="Fem clic en Arduino" />
+            <figcaption aria-hidden="true">Fem clic en
+            Arduino</figcaption>
+            </figure>
+            <p>Començarem a crear el nostre programa amb un bucle tal i
+            com hem fet abans. I anirem a variables.</p>
+            <figure>
+            <img src="img/ArduinoIDE/p2/7.png" alt="Circuit" />
+            <figcaption aria-hidden="true">Circuit</figcaption>
+            </figure>
+            <p>Les variables ens permetran intercanviar informació entre
+            els diferents fils que tenim, en este cas tenim el fil de
+            l’Animació de la rata-penada i el fil de l’Animació
+            d’Arduino. Ara després veurem que podem tindre diversos fils
+            dins d’una mateixa animació.</p>
+            <div class="tip">
+            <p>Les animacions que estem dient per facilitar la
+            comprensió, s’anomenen en realitat <em>sprites</em>.</p>
+            </div>
+            <p>Així, creem les variables dreta i esquerra per a quan
+            volem anar a dreta i esquerra.</p>
+            <figure>
+            <img src="img/ArduinoIDE/p2/9.png" alt="Variables" />
+            <figcaption aria-hidden="true">Variables</figcaption>
+            </figure>
+            <p>Fixem-nos en el bloc <em>fixa X a Y</em>. Aquest bloc ens
+            permetrà assignar valors a les variables. A més ara farem ús
+            dels següents blocs:</p>
+            <ul>
+            <li>Si - si no: En aquest bloc definirem una condició que si
+            és certa executarà el bloc que hi ha a continuació, en cas
+            contrari executarà l’altre.</li>
+            <li>Sensor X premut: Si s’activa aquesta entrada del circuit
+            donarà valor vertader sinó fals.</li>
+            </ul>
+            <div class="warning">
+            <p>El firmware d’S4A habilita les pates 10,11,12,13 com a
+            sortides digitals, els pates 3 i 4 com a entrades digitals i
+            les pates A0,A1,A2,A3,A4 i A5 com a entrades analògiques.
+            Hem de tenir en compte que els sensors utilitzen el que
+            s’anomena lògica inversa, quan estan activitats donen
+            vertader i quan no fals. Així el sensor de presència quan no
+            hi ha cap presència dona vertader sinó fals.</p>
+            </div>
+            <p>D’aquesta manera crearem el següent programa per a llegir
+            constantment si es detecta presència en el sensor i se li
+            assignarà el valor 1 en cas de que si i 0 en cas de que
+            no.</p>
+            <figure>
+            <img src="img/ArduinoIDE/p2/11.png"
+            alt="Programa per a detectar presència" />
+            <figcaption aria-hidden="true">Programa per a detectar
+            presència</figcaption>
+            </figure>
+            <p>Per als dos quedaria de la següent manera:</p>
+            <figure>
+            <img src="img/ArduinoIDE/p2/12.png"
+            alt="Programa animació 1" />
+            <figcaption aria-hidden="true">Programa animació
+            1</figcaption>
+            </figure>
+            <p>Finalment creariem en l’animació1 de la rata-penada un
+            altre <strong>fil</strong> on si dreta es igual a 1,
+            apuntarà a la dreta i en cas contrari apuntarà a
+            l’esquerra.</p>
+            <figure>
+            <img src="img/ArduinoIDE/p2/14.png"
+            alt="Programa complet" />
+            <figcaption aria-hidden="true">Programa complet</figcaption>
+            </figure>
+            <p>Per a fer-lo més interessant podríem fer que es mogués
+            cap a dalt i cap avall si no té cap presència o si té
+            presència en els dos. D’aquesta manera resultaria més
+            divertit manejar la rata-penada.</p>
+            <figure>
+            <img src="img/ArduinoIDE/p2/16.png"
+            alt="Programa complet millorat" />
+            <figcaption aria-hidden="true">Programa complet
+            millorat</figcaption>
+            </figure>
+            <h3 id="programa-utilitzant-entrades-analògiques">Programa
+            utilitzant entrades analògiques</h3>
+            <p>El sensors analògics ens van a permetre parametritzar la
+            realitat d’una manera més acurada. En aquest cas anem a
+            utilitzar una LDR que el que fa és canviar la seua
+            resistència en funció de la llum que té, per això cal tenir
+            un moment per a poder mesurar en quins valors es mou. És per
+            això que fent clic amb el botó dret del ratolí sobre la
+            imatge d’arduino podem veure el panell de sensors. D’aquesta
+            manera podem fer les nostres proves. En el nostre cas hem
+            vist el valor de 300.</p>
+            <p>Hem utilitzat el següent circuit. La resistència LDR i el
+            potenciòmetre es pot alternar de posició. Així mateix, hem
+            posat un LED que s’encendrà quan es faja fosc. Així el
+            nostre circuit quedaria de la següent manera:</p>
+            <figure>
+            <img src="img/ArduinoIDE/p3/1.png" style="width:50.0%"
+            alt="Circuit utilitzat" />
+            <figcaption aria-hidden="true">Circuit
+            utilitzat</figcaption>
+            </figure>
+            <p>Ens crearem dos fons de pantalla i reduirem la imatge de
+            l’Arduino:</p>
+            <figure>
+            <img src="img/ArduinoIDE/p3/2.png" alt="Escenari" />
+            <figcaption aria-hidden="true">Escenari</figcaption>
+            </figure>
+            <p>Farem el mateix amb altre element que serà la
+            làmpara.</p>
+            <figure>
+            <img src="img/ArduinoIDE/p3/3.png" alt="Llum" />
+            <figcaption aria-hidden="true">Llum</figcaption>
+            </figure>
+            <p>Els programes de les imatges serien molt senzills.
+            Crearíem una variable <em>moment</em> que canviaria quan fos
+            de dia o de nit:</p>
+            <figure>
+            <img src="img/ArduinoIDE/p3/4.png"
+            alt="Programa escenari" />
+            <figcaption aria-hidden="true">Programa
+            escenari</figcaption>
+            </figure>
+            <figure>
+            <img src="img/ArduinoIDE/p3/5.png" alt="Programa llum" />
+            <figcaption aria-hidden="true">Programa llum</figcaption>
+            </figure>
+            <p>El programa d’Arduino seria qui controlaria la variables
+            moment en funció de si el valor del sensor es 300 (en el
+            nostre cas). Dependria de cada tipus de sensor.</p>
+            <figure>
+            <img src="img/ArduinoIDE/p3/6.png" alt="Arduino" />
+            <figcaption aria-hidden="true">Arduino</figcaption>
+            </figure>
+            <p>I ja tindriem el nostre sistema funcionant.</p>
+            <h1 id="bibliografia-i-referències">Bibliografia i
+            referències</h1>
+            <ol class="example" type="1">
+            <li>http://s4a.cat/index_ca.html</li>
+            </ol>
+            <section id="footnotes"
+            class="footnotes footnotes-end-of-document"
+            role="doc-endnotes">
+            <hr />
+            <ol>
+            <li id="fn1"><p>Quan parlem de firmware ens referim a un
+            programa per a carregar a la nostra placa. Aquest programa
+            té unes funcions específiques.<a href="#fnref1"
+            class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+            </ol>
+            </section>
+        </main>
+        
+
+        <!--- Modal images -->
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- The Close Button -->
+            <!--span class="close">&times;</span-->
+
+            <!-- Modal Content (The Image) -->
+            <img class="modal-content" id="img01">
+
+            <!-- Modal Caption (Image Text) -->
+            <div id="caption"></div>
+        </div>
+
+        <!-- End Modal Images -->
+
+        <script>
+            function ModalizeImages() {
+                // Script basat en https://www.w3schools.com/howto/howto_css_modal_images.asp
+                // PEr ampliar imatges en fer click
+
+                // Get the modal
+                var modal = document.getElementById("myModal");
+
+                var modalImg = document.getElementById("img01");
+                var captionText = document.getElementById("caption");
+
+                // Get the image and insert it inside the modal - use its "alt" text as a caption
+                //var img = document.getElementById("myImg");
+                document.querySelectorAll("img").forEach((img => {
+                        img.onclick = function() {
+                            modal.style.display = "block";
+                            modalImg.src = this.src;
+                            captionText.innerHTML = this.alt;
+                        }
+                    }))
+                    // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks on <span> (x), close the modal
+                //span.onclick = function() {
+                myModal.onclick = function() {
+                    modal.style.display = "none";
+                }
+
+
+            }
+
+
+            function markItem(id) {
+                // Restaurem format de tots
+                document.querySelectorAll("#TOC a").forEach(function(item) {
+                        //item.style.fontWeight = "300";
+                        item.classList.remove("navItemSelected");
+                    })
+                    //item.style.color = "#ff0000";
+
+                // Afegim format
+                let items = document.querySelectorAll("#TOC a[href='#" + id + "']");
+                items.forEach(function(item) {
+                    //item.style.fontWeight = "bolder";
+                    item.classList.add("navItemSelected");
+                })
+
+            }
+
+            var observer = new IntersectionObserver(function(entries) {
+                // isIntersecting is true when element and viewport are overlapping
+                // isIntersecting is false when element and viewport don't overlap
+                if (entries[0].isIntersecting === true) {
+                    let id = entries[0].target.id;
+                    markItem(id);
+                }
+
+            }, {
+                threshold: [0]
+            });
+
+            window.addEventListener("load", function() {
+                document.querySelectorAll("h1, h2, h3").forEach(function(item) {
+                    observer.observe(item);
+                });
+
+                document.querySelectorAll("#TOC a").forEach(function(item) {
+                    item.addEventListener("click", function(item) {
+                        markItem(item.id);
+                    })
+                })
+
+                // Fem modals totes les imatges
+                ModalizeImages();
+            })
+
+            document.querySelector("#TOC").addEventListener("click", function(event) {
+                let toc = event.target
+                if (toc.offsetWidth > 10) {
+                    toc.classList.add("minimizedToc");
+                }
+            })
+
+            document.querySelector("#TOC").addEventListener("mouseover", function(event) {
+                let toc = event.target
+                if (toc.classList.contains("minimizedToc"))
+                    toc.classList.remove("minimizedToc");
+            })
+
+
+            //item.style.color = "#ff0000";
+        </script>
+    </div>
+</body>
+
+</html>
