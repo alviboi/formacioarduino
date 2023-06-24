@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ca" xml:lang="ca" >
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />     <meta name="author" content="Alfredo Rafael Vicente Boix" />      <meta name="dcterms.date" content="2023-06-22" />      <meta name="keywords" content="Xarxa, Instal·lació" />      <title>SEGUIDOR DE LÍNIA</title>
+    <style>
+        code{white-space: pre-wrap;}
+        span.smallcaps{font-variant: small-caps;}
+        div.columns{display: flex; gap: min(4vw, 1.5em);}
+        div.column{flex: auto; overflow-x: auto;}
+        div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+        ul.task-list{list-style: none;}
+        ul.task-list li input[type="checkbox"] {
+          width: 0.8em;
+          margin: 0 0.8em 0.2em -1.6em;
+          vertical-align: middle;
+        }
+        .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    </style>
+        <link rel="stylesheet" href="aqua.css" />  
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <![endif]-->
+      
+</head>
+
+<body>
+    <div id="content">
+                 <header id="title-block-header">
+            <h1 class="title">SEGUIDOR DE LÍNIA</h1>
+            <!--        <p class="subtitle">Projecte d’Arduino</p>
+        -->
+            <!--         <p class="author">Alfredo Rafael Vicente
+Boix</p>
+         -->
+                        <p class="date">2023-06-22</p>
+                    </header>
+                 <nav id="TOC" role="doc-toc">
+            <div class="navContainer">
+                 <ul>
+<li><a href="#introducció" id="toc-introducció">Introducció</a>
+<ul>
+<li><a href="#el-seguidor-de-línia" id="toc-el-seguidor-de-línia">El
+seguidor de línia</a></li>
+<li><a href="#els-nostres-aliats-els-integrats"
+id="toc-els-nostres-aliats-els-integrats">Els nostres aliats: els
+integrats</a></li>
+<li><a href="#base-estructural" id="toc-base-estructural">Base
+estructural</a></li>
+</ul></li>
+<li><a href="#circuit" id="toc-circuit">Circuit</a></li>
+<li><a href="#muntatge" id="toc-muntatge">Muntatge</a></li>
+<li><a href="#programa" id="toc-programa">Programa</a></li>
+</ul>
+            </div>
+        </nav>
+                <main>
+            <!-- \awesomebox[violet]{2pt}{\faRocket}{violet}{Lorem ipsum…} -->
+            <!-- ![Esquema d'un switch amb diferents VLANS](switch/vlans2.png){ width=50% } -->
+            <h1 id="introducció">Introducció</h1>
+            <p>En aquest últim bloc anem a tractar de fer un projecte.
+            En aquest bloc tractarem d’anar fent un projecte pas per
+            pas. Això no significa que heu de seguir vosaltres el
+            projecte, de fet, ja vo avancem que nos e vos va a demanar
+            realitzat cap projecte físic per a finalitzar el curs. Sinó
+            plantejar la realització d’un projecte per a realitzar amb
+            els alumnes. Disposeu de la placa sensor kit per a fer
+            proves amb els sensors.</p>
+            <p>El projecte en qüestió no es realitza en un dia o en dos.
+            El projecte que vos plantegem açí, es realitza normalment a
+            2n de la ESO muntant-lo des de 0 i comporta un trimestre amb
+            els alumnes. S’ha realitzat els mateix projectes a 1r de la
+            ESO, però facilitant-los l’estructura i el cablejat de
+            l’integrat que anem a utilitzar. Però en en aquest curs ens
+            centrem només en la part tècnica… Que sapiguem fer-ho
+            nosaltres.</p>
+            <p>Quan ens plategem fer un projecte amb Arduino a la
+            classe, abans hem de dissenyar-lo nosaltres, és una tasca
+            que porta moltes hores i molts dies de prova i error fins
+            que finalment funciona tot. Es poden buscar en multitud de
+            pàgines projectes ja realitzats per i simplement adaptar-los
+            a les nostres necessitats. En qualsevol cas, sempre hi haurà
+            moments de desesperació i moments en que podeu tirar
+            avant.</p>
+            <h2 id="el-seguidor-de-línia">El seguidor de línia</h2>
+            <p>Aquest projecte es bastant característic dels projectes
+            que es realitzen a secundària, però aquest és fàcilment
+            adaptable per a primària. Tot dependrà sempre de què volem
+            que realitzen els alumnes. Des de programar directament amn
+            C, o amb blocs i quines parts del codi volem que realitzen.
+            Nosaltres no anem a plantejar cap adreçament, sinó que
+            plantejarem de manera genèrica quin és el procediment que
+            moltes vegades seguim a l’hora de realitzar un projecte.</p>
+            <p>El projecte en qüestió consisteix en realitzar un robot
+            que automàticament vaja seguint una línia i vaja corregint
+            el seu error cada vegada que es desvie un poc del seu
+            recorregut. Es tracta d’una idea senzilla però que té una
+            implementació relativament complexa.</p>
+            <p>El primer que hem de plantejar-nos és quins són els
+            elements que anem a necessitar, en el nostre cas ens caldria
+            un sensor que detectés la diferència entre llum fosca i llum
+            clara i que puguem ajustar-lo, en aquest cas optarem per un
+            sensor ir on es pot ajustar la sensibilitat del mateix i té
+            un preu reduït (0,6 € aprox.).</p>
+            <figure>
+            <img src="img/sensor.jpg" style="width:50.0%"
+            alt="Sensor IR" />
+            <figcaption aria-hidden="true">Sensor IR</figcaption>
+            </figure>
+            <p>Altre dels elements que ens caldrien serien els motors,
+            en aquest cas i per a tot tipus de vehicles senzills, és
+            millor es comptar amb dos motors (un per a cada roda
+            tractora), podem controlar el vehicle amb aquest dos motors
+            en funció de quin està funcionant (anant avant o
+            enrere).</p>
+            <div class="note">
+            <p>En funció de la dificultat es pot afegir més o menys
+            circuiteria. Per a cursos més avançats es pot dissenyar un
+            pont un H per a controlar els motors amb transistors. En el
+            nostre cas farem ús d’un integrat.</p>
+            </div>
+            <h2 id="els-nostres-aliats-els-integrats">Els nostres
+            aliats: els integrats</h2>
+            <p>Quan parlem d’integrats molt sovint ens ve al cap coses
+            molt complexes que la nostra ment no es capaç de desxifrar
+            (bé, així ho percebia jo), però res més lluny de la
+            realitat, els integrats ens van a facilitar la nostra tasca,
+            això sí, cal coneixer-los.</p>
+            <p>En el nostre cas anem a utilitzar un integrat anomenat
+            L293D, el qual té nombroses variants, però aquesta és la més
+            senzilla. Concretament en aquest tipus de projecte podem
+            utilitzar mòduls preparats per a Arduino que ha venen
+            preparats per a connectar els motors i 4 entrades:</p>
+            <figure>
+            <img src="img/l293darduino.jpg" style="width:50.0%"
+            alt="Mòdul L293D" />
+            <figcaption aria-hidden="true">Mòdul L293D</figcaption>
+            </figure>
+            <p>Com podem veure connectem un motor a A+ i A-, l’altre a
+            B+ i B-, i les 4 entrades IN ens serviran per a controlar
+            els motors. Bàsicament IN1 i IN2 controla un motor i IN3 i
+            IN4 l’altre segons la següent taula:</p>
+            <table>
+            <thead>
+            <tr class="header">
+            <th>IN1</th>
+            <th>IN2</th>
+            <th>Resultat</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="odd">
+            <td>LOW</td>
+            <td>LOW</td>
+            <td>Aturat</td>
+            </tr>
+            <tr class="even">
+            <td>LOW</td>
+            <td>HIGH</td>
+            <td>Gira dreta</td>
+            </tr>
+            <tr class="odd">
+            <td>HIGH</td>
+            <td>LOW</td>
+            <td>Gira esquerre</td>
+            </tr>
+            <tr class="even">
+            <td>LOW</td>
+            <td>LOW</td>
+            <td>Aturat</td>
+            </tr>
+            </tbody>
+            </table>
+            <p>Òbviament l’altre motor funciona igual però amb IN3 i
+            IN4. I d’aquesta manera ja ens hem estalviat gran part de la
+            circuiteria que hem de realitzar.</p>
+            <p>Existeixen integrats gairebé per a qualsevol cosa, i es
+            recomana treballar amb ells ja que simplifiquen molt els
+            dissenys, això sí cal que els docents vagen tenint
+            coneixements sobre quins tipus d’integrats poden utilitzar i
+            això sí que cal els professors es vagen formant poc a
+            poc.</p>
+            <h2 id="base-estructural">Base estructural</h2>
+            <p>En aquest curs no pretenem explicar com realitzar una
+            base estructural per al nostre projecte ja que només tractem
+            de donar les primeres pinzellades per a començar a treballar
+            amb Arduino, tot i això, en aquest projecte concretament hem
+            utilitzat una base comercial que podeu trobar <a
+            href="https://www.tecnofilo.es/motores/202-chasis-robot-smart-car-2wd-coche-2-ruedas.html">ací</a>,
+            <a
+            href="https://leantec.es/tienda/chasis-robot-2wd-chasis-robot-de-2-ruedas/">ací</a>,
+            <a
+            href="https://robotlandia.es/chasis/623-chasis-2wd-de-coche-inteligente-arduino-diy-smart-car-robot-kit-de-dos-ruedas-con-codificador-de-velocidad-.html">ací</a>,
+            <a
+            href="https://es.aliexpress.com/item/1005001651643237.html?spm=a2g0o.productlist.main.1.49d715e9kWI7VX&amp;algo_pvid=4804e4da-d90b-4667-bf68-81164d9b6182&amp;algo_exp_id=4804e4da-d90b-4667-bf68-81164d9b6182-0&amp;pdp_npi=3%40dis%21EUR%217.62%217.23%21%21%21%21%21%402100b0d116872822935123633d0742%2112000025516098421%21sea%21ES%21116076280&amp;curPageLogUid=oN94OQo53Pzr">ací</a>
+            i com no <a
+            href="https://www.amazon.es/UMTMedia%C2%AE-Chasis-inteligente-Arduino-Raspberry/dp/B096XZ9VK2/ref=sr_1_4?keywords=chasis+robot+2wd&amp;qid=1687282238&amp;sr=8-4">ací</a>.
+            Així com en nombrosos llocs comercials.</p>
+            <div class="note">
+            <p>En el nostre cas la despesa realitzada és d’uns 10€, i ja
+            tenim la base per a crear nombrosos projectes. Des del
+            nostre punt de vista és preferible treballar amb aquest
+            tipus d’estructures ja que són econòmiques i no són una gran
+            pèrdua si es perden o es trenquen.</p>
+            </div>
+            <p>La base en qüestió s’anomena chasis 2WD i ve amb
+            nombrosos forats per a afegir els elements que nosaltres
+            considerem oportuns per a realitzar els nostres projectes.
+            Sempre existeix l’opció en funció de la duració i dificultat
+            del projecte de realitzat al taller la nostra base de manera
+            manual.</p>
+            <figure>
+            <img src="img/base_robot.jpg" style="width:50.0%"
+            alt="Exemple de base 2WD" />
+            <figcaption aria-hidden="true">Exemple de base
+            2WD</figcaption>
+            </figure>
+            <h1 id="circuit">Circuit</h1>
+            <p>Ja tenim la nostra base i els possibles elements que anem
+            a utilitzar, en aquest cas igualment hem de plantejat quina
+            és la dificultat que volem plantejar a l’alumnat ja que
+            podem dissenyar nosaltres el projecte o podem deixar que
+            ells plategen les possibles solucions i les exposen, de
+            manera que entre tots vagen veient quines són les possibles
+            dificultats i les solucions que entre tots van
+            plantejant.</p>
+            <div class="note">
+            <p>El control es pot fer amb un circuit electrònic sense
+            necessitat d’Arduino, eixa seria la solució òptima. Però no
+            és el plantejament d’aquest curs.</p>
+            </div>
+            <p>En el nostre cas anem a utilitzat Arduino per a fer tot
+            el control. De manera que una possible solució al circuit
+            seria la següent:</p>
+            <!-- IMATGE CIRCUIT -->
+            <figure>
+            <img src="img/circuitseguidorlinia_bb.png"
+            style="width:50.0%" alt="Circuit del seguidor de línia" />
+            <figcaption aria-hidden="true">Circuit del seguidor de
+            línia</figcaption>
+            </figure>
+            <p>Com es pot veure, nosaltres no hem fet ús del mòdul sino
+            directament de l’integrat L293D, les connexions són sempre
+            les mateixes, sempre es seguix el mateix esquema de
+            muntatge, excepte les estrades a la placa Arduino que
+            cadascú escollix les que vol.</p>
+            <h1 id="muntatge">Muntatge</h1>
+            <p>Una vegada hem realitzat el muntatge podem veure una cosa
+            com esta. Aquest muntatge s’ha de plantejar de manera
+            gradual i anar entenent cadascun dels elements un a un. La
+            part de l’integrat recomanen donar-la ja feta o utilitzar un
+            mòdul ja muntat. En aquest cas hem utilitzat un integrat ja
+            que no disposem d’un mòdul.</p>
+            <p>Realitzar el cablejat pot resultar complexe i la més
+            propensa a errors, per això s’ha de realitzar poc a poc. Hi
+            han diferents estratègies per a que no hi haja errors a
+            l’hora de realitzar el muntatge i és donar el cablejat del
+            mateix color que tenen al circuit, així com la quantitat
+            justa. Si els falta algun color és que algun l’han posat on
+            no tocava i si els faltes cables també podem intuir que hi
+            ha un error.</p>
+            <p>El muntatge del projecte quedaria uan cosa com esta.</p>
+            <!-- IMATGE muntatge -->
+            <figure>
+            <img src="img/muntatge.jpg" style="width:50.0%"
+            alt="Muntatge final del projecte" />
+            <figcaption aria-hidden="true">Muntatge final del
+            projecte</figcaption>
+            </figure>
+            <p>Cal tenir en compte que el muntatge que realitzeu en un
+            principi moltes vegades haurà d’ajustar-se bé perquè no gira
+            bé o hi ha alguna cosa que no està ajustada, ja vos hem dit
+            que estem muntant un prototip i aquesta part correspon al
+            professorat. En el nostre cas una de les parts que hem
+            d’ajustar és el sensor IR. Aquest té un potenciòmetre que
+            podem anar ajustant en funció de la nostra línia negra. A
+            més hem hagut de posar un tub (la part de dintre està
+            pintada en negre) ja que la llum ambiental pot afectar a la
+            sensibilitat del sensor.</p>
+            <!-- IMATGE SENSOR AMB POTENCIÒMETRE -->
+            <figure>
+            <img src="img/sensor.png" style="width:50.0%"
+            alt="Sensor potenciòmetre" />
+            <figcaption aria-hidden="true">Sensor
+            potenciòmetre</figcaption>
+            </figure>
+            <p>Aquí teniu un exemple de com l’hem muntat:</p>
+            <figure>
+            <img src="img/sensormuntat.jpg" style="width:50.0%"
+            alt="Sensor muntat al vehicle" />
+            <figcaption aria-hidden="true">Sensor muntat al
+            vehicle</figcaption>
+            </figure>
+            <h1 id="programa">Programa</h1>
+            <p>En aquest projecte hem decidit utilitzar Blockly@rduino
+            ja que ens simplifica molt el muntatge. Realitzar el
+            programa sencer des del principi fins al final és una tasca
+            que gairebé no realitza ningú. Quan plategem un prototip hem
+            d’anar mirant cadascuna de les parts del que consta el
+            nostre prototip. En el nostre cas hem anat provant les
+            següents parts:</p>
+            <ol type="1">
+            <li>Provar que s’encen el LED de la placa quan detecte
+            presència en el sensor.</li>
+            </ol>
+            <p><img src="img/pas1.png"
+            alt="Exemple de programa per provar els sensors" />
+            <!-- programa 1 --></p>
+            <ol start="2" type="1">
+            <li>Provar 2 eixides per a fer funcionar el motor en un
+            sentit o en altre.</li>
+            </ol>
+            <figure>
+            <img src="img/tema4:%20projecte/1.png"
+            alt="Exemple per provar el control dels motors" />
+            <figcaption aria-hidden="true">Exemple per provar el control
+            dels motors</figcaption>
+            </figure>
+            <!-- progrma 2 -->
+            <figure>
+            <img src="img/pas2a.png"
+            alt="Creació de funció i circuit" />
+            <figcaption aria-hidden="true">Creació de funció i
+            circuit</figcaption>
+            </figure>
+            <p>Fixem-nos que en aquest circuit hem creat una funció per
+            a simplificar el funcionament. Aquesta funció rep 4 entrades
+            que és el que volem escriure al controlador del motor. Podem
+            resumir el funcionament en aquesta taula:</p>
+            <table>
+            <colgroup>
+            <col style="width: 6%" />
+            <col style="width: 6%" />
+            <col style="width: 9%" />
+            <col style="width: 9%" />
+            <col style="width: 9%" />
+            <col style="width: 9%" />
+            <col style="width: 48%" />
+            </colgroup>
+            <thead>
+            <tr class="header">
+            <th>Sensor 9</th>
+            <th>Sensor 8</th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>Resultat</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="odd">
+            <td>fals</td>
+            <td>fals</td>
+            <td>desactivat</td>
+            <td>activat</td>
+            <td>desactivat</td>
+            <td>activat</td>
+            <td>Els dos motors van avant</td>
+            </tr>
+            <tr class="even">
+            <td>cert</td>
+            <td>fals</td>
+            <td>activat</td>
+            <td>desactivat</td>
+            <td>desactivat</td>
+            <td>activat</td>
+            <td>Un motor va avant i l’altre enrere, per tant gira</td>
+            </tr>
+            <tr class="odd">
+            <td>fals</td>
+            <td>cert</td>
+            <td>desactivat</td>
+            <td>activat</td>
+            <td>activat</td>
+            <td>desactivat</td>
+            <td>Un motor va avant i l’altre enrere, per tant gira</td>
+            </tr>
+            <tr class="even">
+            <td>cert</td>
+            <td>cert</td>
+            <td>activat</td>
+            <td>activat</td>
+            <td>activat</td>
+            <td>activat</td>
+            <td>Detecta que està en 2 linies negres i es para</td>
+            </tr>
+            </tbody>
+            </table>
+            <p>El sensor al pin 9 i al pin 8 detecten la presència de la
+            línia negra o no i en funció de la detecció gira cap a un
+            costat o l’altre. Podem anar provant totes les opcions per a
+            assegurar-nos que els motors funcionen com cal.</p>
+            <figure>
+            <img src="img/pas2c.png" alt="Provant els motors" />
+            <figcaption aria-hidden="true">Provant els
+            motors</figcaption>
+            </figure>
+            <p>Finalment, ho posaríem tot junt. En funció de la entrada
+            de cada sensor tindriem una sortida. El que hem fet
+            bàsicament és repetir la mateixa condició per a cada
+            estat.</p>
+            <!-- programa -->
+            <figure>
+            <img src="img/pas3a.png" alt="Programa complet" />
+            <figcaption aria-hidden="true">Programa complet</figcaption>
+            </figure>
+            <p>Fixem-nos que no tenim la condició de cert / cert per als
+            sensors. Això és degut a que estem fent funcionar el motors
+            durant 100 ms i parant-los 900 ms, si no es dona cap
+            condició anterior, per defecte estarà parat, per tant no ens
+            cal la condició cert / cert per als sensors.</p>
+            <p>El motiu per el qual ho fem així és per a que el cotxe
+            vaja més lentament, podem anar jugant en aquests valors, el
+            problema és que si va massa ràpid és possible que no es puga
+            fer el gir del vehicle i es passe la línia negra. És una
+            cosa amb la qual hi ha que anar jugant.</p>
+            <div class="warning">
+            <p>Per als usuaris més avançats cal dir que el L293D està
+            preparat per a suportar PWM, però en aquest motors no
+            funciona. Són massa poc potents. El PWM és un pin d’Arduino
+            que ens permet controlar la velocitat del motor. Però els
+            motors que solem utilitzat solen ser massa poc potents.</p>
+            </div>
+        </main>
+        
+
+        <!--- Modal images -->
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- The Close Button -->
+            <!--span class="close">&times;</span-->
+
+            <!-- Modal Content (The Image) -->
+            <img class="modal-content" id="img01">
+
+            <!-- Modal Caption (Image Text) -->
+            <div id="caption"></div>
+        </div>
+
+        <!-- End Modal Images -->
+
+        <script>
+            function ModalizeImages() {
+                // Script basat en https://www.w3schools.com/howto/howto_css_modal_images.asp
+                // PEr ampliar imatges en fer click
+
+                // Get the modal
+                var modal = document.getElementById("myModal");
+
+                var modalImg = document.getElementById("img01");
+                var captionText = document.getElementById("caption");
+
+                // Get the image and insert it inside the modal - use its "alt" text as a caption
+                //var img = document.getElementById("myImg");
+                document.querySelectorAll("img").forEach((img => {
+                        img.onclick = function() {
+                            modal.style.display = "block";
+                            modalImg.src = this.src;
+                            captionText.innerHTML = this.alt;
+                        }
+                    }))
+                    // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks on <span> (x), close the modal
+                //span.onclick = function() {
+                myModal.onclick = function() {
+                    modal.style.display = "none";
+                }
+
+
+            }
+
+
+            function markItem(id) {
+                // Restaurem format de tots
+                document.querySelectorAll("#TOC a").forEach(function(item) {
+                        //item.style.fontWeight = "300";
+                        item.classList.remove("navItemSelected");
+                    })
+                    //item.style.color = "#ff0000";
+
+                // Afegim format
+                let items = document.querySelectorAll("#TOC a[href='#" + id + "']");
+                items.forEach(function(item) {
+                    //item.style.fontWeight = "bolder";
+                    item.classList.add("navItemSelected");
+                })
+
+            }
+
+            var observer = new IntersectionObserver(function(entries) {
+                // isIntersecting is true when element and viewport are overlapping
+                // isIntersecting is false when element and viewport don't overlap
+                if (entries[0].isIntersecting === true) {
+                    let id = entries[0].target.id;
+                    markItem(id);
+                }
+
+            }, {
+                threshold: [0]
+            });
+
+            window.addEventListener("load", function() {
+                document.querySelectorAll("h1, h2, h3").forEach(function(item) {
+                    observer.observe(item);
+                });
+
+                document.querySelectorAll("#TOC a").forEach(function(item) {
+                    item.addEventListener("click", function(item) {
+                        markItem(item.id);
+                    })
+                })
+
+                // Fem modals totes les imatges
+                ModalizeImages();
+            })
+
+            document.querySelector("#TOC").addEventListener("click", function(event) {
+                let toc = event.target
+                if (toc.offsetWidth > 10) {
+                    toc.classList.add("minimizedToc");
+                }
+            })
+
+            document.querySelector("#TOC").addEventListener("mouseover", function(event) {
+                let toc = event.target
+                if (toc.classList.contains("minimizedToc"))
+                    toc.classList.remove("minimizedToc");
+            })
+
+
+            //item.style.color = "#ff0000";
+        </script>
+    </div>
+</body>
+
+</html>
